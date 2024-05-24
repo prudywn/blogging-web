@@ -4,7 +4,7 @@ export default function Write() {
   return (
 
     <div className='write'>
-        <img className='writeImg' src="" alt="" />
+        <img className='writeImg' src="https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp" alt="Nature" />
         <form className='writeForm'>
             <div className='writeFormGroup'>
                 <label htmlFor='fileInput'>
