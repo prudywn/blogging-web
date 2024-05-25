@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom"
 import  "./Topbar.css"
+//import Search from "../search/Search"
 
 //import { hover } from "@testing-library/user-event/dist/hover"
 
@@ -9,6 +10,9 @@ export default function Topbar() {
   return (
     <div className="top">
        <div className="topLeft">
+       
+        <Link className="link" to={'/settings'}><i className="topIcon fa fa-cog"></i></Link>
+       
        <i className="topIcon fab fa-facebook-square"></i>
        <i className="topIcon  fa-brands fa-square-twitter"></i>
        <i className="topIcon  fa-brands fa-square-instagram"></i>
@@ -58,8 +62,8 @@ export default function Topbar() {
         </ul>
       )
         }
+        {/* <Search icon = {<i className="topSearchIcon fa-solid fa-magnifying-glass"></i>} data={['apple, banana']}/> */}
         
-        <i className="topSearchIcon fa-solid fa-magnifying-glass"></i>
         </div>
     </div>
   )
