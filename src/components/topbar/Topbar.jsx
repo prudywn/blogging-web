@@ -1,70 +1,90 @@
-
-import { Link } from "react-router-dom"
-import  "./Topbar.css"
-//import Search from "../search/Search"
-
-//import { hover } from "@testing-library/user-event/dist/hover"
+import { Link } from "react-router-dom";
+import "./Topbar.css";
+import { useDarkMode } from "../DarkModeContext";
+import { useState } from "react";
 
 export default function Topbar() {
-  const user = false
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const modeClass = isDarkMode ? 'dark' : '';
+  const user = true;
+  const [isNavVisible, setIsNavVisible] = useState(false);
+
+  const toggleNavVisibility = () => {
+    setIsNavVisible(!isNavVisible);
+  };
+
   return (
-    <div className="top">
-       <div className="topLeft">
-       
-        <Link className="link" to={'/settings'}><i className="topIcon fa fa-cog"></i></Link>
-       
-       <i className="topIcon fab fa-facebook-square"></i>
-       <i className="topIcon  fa-brands fa-square-twitter"></i>
-       <i className="topIcon  fa-brands fa-square-instagram"></i>
-       <i className="topIcon  fa-brands fa-tiktok"></i>
-       </div>
-
-       <div className="topCenter">
+    <div className={`top ${modeClass}`}>
+      <div className="mode" onClick={toggleDarkMode}>
+        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+        <i className={`modeIcon fa-solid ${isDarkMode ? 'fa-toggle-off' : 'fa-toggle-on'}`}></i>
+      </div>
+      <div className="topLeft">
+        <Link className="link" to="/settings"><i className="topIcon fa fa-cog"></i></Link>
+        <i className="topIcon fab fa-facebook-square"></i>
+        <i className="topIcon fa-brands fa-square-twitter"></i>
+        <i className="topIcon fa-brands fa-square-instagram"></i>
+        <i className="topIcon fa-brands fa-tiktok"></i>
+      </div>
+      <div className={`topCenter ${isNavVisible ? 'show-nav' : ''}`}>
         <ul className="topList">
-         <li className="topListItem">
-           <Link className="link" to={'/'} >HOME </Link>
-         </li>
-         <li className="topListItem">
-          <Link className="link" >
-            ABOUT
-          </Link>
-         </li>
-         <li className="topListItem">
-          <Link className="link">
-            CONTACT
-          </Link>
-         </li>
-         <li className="topListItem">
-          <Link className="link" to={'/write'}>
-            WRITE
-          </Link>
-         </li>
-         <li className="topListItem">
-          {user && 'LOGOUT'}
-         </li>
+          <div className="topListItemOne">
+            <li className="topListItem">
+              <Link className="link" to="/">HOME</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/about">ABOUT</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/contact">CONTACT</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/write">WRITE</Link>
+            </li>
+          </div>
+          <li className="topListItem topListItemLog">
+            {user && 'LOGOUT'}
+          </li>
+          <div className="out">
+            <li className="topListItem">
+              <Link className="link" to="/" onClick={toggleNavVisibility}>HOME</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/about">ABOUT</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/contact">CONTACT</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/write">WRITE</Link>
+            </li>
+          </div>
         </ul>
-       </div>
-
-       <div className="topRight">
+      </div>
+      <div className="topRight">
         {user ? (
           <img 
-        className="topImg"
-        src="https://images.pexels.com/photos/20234108/pexels-photo-20234108/free-photo-of-man-taking-a-picture-in-shadow.jpeg?auto=compress&cs=tinysrgb&w=600" alt=""/>
-        ):
-        (
+            className="topImg"
+            src="https://images.pexels.com/photos/6850746/pexels-photo-6850746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+            alt=""
+          />
+        ) : (
           <ul className="topList">
             <li className="topListItem">
-        <Link className="link" to={'/login'}>LOGIN</Link>
-        </li>
-        <li>
-        <Link className="link" to={'/register'}>REGISTER</Link>
-        </li>
-        </ul>
-      )
-        }
-        {/* <Search icon = {<i className="topSearchIcon fa-solid fa-magnifying-glass"></i>} data={['apple, banana']}/> */}
-        
+              <Link className="link" to="/login">LOGIN</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/register">REGISTER</Link>
+            </li>
+          </ul>
+        )}
+        <i className="topSearchIcon fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div className="hamDisplay">
+        <div className="hamburger" onClick={toggleNavVisibility}>
+          <i className="hamburgerIcon fa fa-bars"></i>
         </div>
+      </div>
     </div>
-  )
+  );
 }

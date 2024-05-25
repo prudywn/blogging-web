@@ -1,8 +1,12 @@
 import "./Header.css"
+import { useDarkMode } from "../DarkModeContext";
 
 export default function Header() {
+  const { isDarkMode } = useDarkMode();
+  const modeClass = isDarkMode ? 'dark' : '';
+
   return (
-    <div className="header">
+    <div className={`header ${modeClass}`}>
        <div className="headerTitle">
         <span className="headerTitleSm">React</span>
         <span className="headerTitleLg">Blog</span>
@@ -19,4 +23,3 @@ export default function Header() {
     </div>
   )
 }
-
