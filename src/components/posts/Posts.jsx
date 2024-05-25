@@ -9,11 +9,11 @@ export default function Posts() {
   return (
     <div className={`posts ${modeClass}`}>
       <Post />
+     {/*  <Post />
       <Post />
       <Post />
       <Post />
-      <Post />
-      <Post />
+      <Post /> */}
     </div>
   );
 }
