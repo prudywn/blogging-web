@@ -11,24 +11,37 @@ import Register from './pages/register/Register'
 
 export default function App() {
   const [user, setUser] = React.useState(false)
+  
+    React.useEffect(() => {
+      const getUser = async () => {
+        const res = await fetch('/api/auth/login')
+        const data = await res.json()
+        if (data.username) {
+          setUser(true)
+          }
+          }
+          getUser()
+          }, [])
+
+
   return (
    <BrowserRouter>
         <Topbar />
        <Routes>
         <Route >
-          <Route page='/'  index element={<Home />} />
-          
-          
-          <Route path='/write' element={user ? <Write /> : <Register />} />
+          <Route page='/'  index element={<Home /> } />
+
+          <Route path='/write' element={user ? <Write /> : <Register /> } />
+
 
           
-          <Route path='/settings' element={user ? <Settings /> : <Register />} />
+          <Route path='/settings' element={setUser? <Settings /> : <Register />} />
 
           
           <Route path='/login' element={user ? <Home /> : <Login />} />
 
           
-          <Route path='/register' element={user ? <Home /> : <Register />} />
+          <Route path='/register' element={ user ? <Home /> : <Register />} />
 
 
          <Route path='/post/:postId' element={< Single/>}/>

@@ -7,7 +7,6 @@ export default function Topbar() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const modeClass = isDarkMode ? 'dark' : '';
   const user = true;
-  
   const [isNavVisible, setIsNavVisible] = useState(false);
 
   const toggleNavVisibility = () => {
@@ -21,6 +20,7 @@ export default function Topbar() {
         <i className={`modeIcon fa-solid ${isDarkMode ? 'fa-toggle-off' : 'fa-toggle-on'}`}></i>
       </div>
       <div className="topLeft">
+        <Link className="link" to="/settings"><i className="topIcon fa fa-cog"></i></Link>
         <i className="topIcon fab fa-facebook-square"></i>
         <i className="topIcon fa-brands fa-square-twitter"></i>
         <i className="topIcon fa-brands fa-square-instagram"></i>

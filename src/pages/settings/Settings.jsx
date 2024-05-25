@@ -1,3 +1,4 @@
+import ProfilePic from '../../components/profile/ProfilePic'
 import './settings.css'
 //import Sidebar from '../../components/sidebar/Sidebar'
 
@@ -6,8 +7,7 @@ export default function Settings() {
     <div>   
         <div className="settings">
             <div className="settingsWrapper">
-              
-                <div className="settingsTitle">
+            <div className="settingsTitle">
                   <span className="settingsUpdateTitle">Update Your Account</span>
                   
                   <span className="settingsDeleteTitle">Delete Account</span>
@@ -17,7 +17,7 @@ export default function Settings() {
                 <form className="settingsForm">
                   <label>Profile Picture</label>
                   <div className="settingsProfile">
-                    <img src="" alt="" />
+                    <img src={<ProfilePic />} alt="" />
 
                     <label htmlFor="fileInput">
                       <i className=" settingsProfilePicIcon fas fa-user-circle"></i>

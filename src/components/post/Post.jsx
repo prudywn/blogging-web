@@ -1,9 +1,17 @@
 import "./Post.css";
 import { useDarkMode } from "../DarkModeContext";
+// import React, {useEffect} from "react"
+// import axios from 'axios'
 
 export default function Post() {
   const { isDarkMode } = useDarkMode();
   const modeClass = isDarkMode ? 'dark' : '';
+
+  // useEffect(() => {
+  //   axios.get({'url': 'https://rapidapi.com/sharemap-sharemap-default/api/travel-places'})
+  //   .then(res => console.log(res))
+  //   .catch(err => console.log(err))
+  // }, [])
 
   return (
     <div className={`post ${modeClass}`}>
