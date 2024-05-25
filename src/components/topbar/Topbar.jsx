@@ -1,11 +1,19 @@
 import { Link } from "react-router-dom";
 import "./Topbar.css";
 import { useDarkMode } from "../DarkModeContext";
+import { useState } from "react";
 
 export default function Topbar() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const modeClass = isDarkMode ? 'dark' : '';
-  const user = true
+  const user = true;
+  
+  const [isNavVisible, setIsNavVisible] = useState(false);
+
+  const toggleNavVisibility = () => {
+    setIsNavVisible(!isNavVisible);
+  };
+
   return (
     <div className={`top ${modeClass}`}>
       <div className="mode" onClick={toggleDarkMode}>
@@ -18,23 +26,39 @@ export default function Topbar() {
         <i className="topIcon fa-brands fa-square-instagram"></i>
         <i className="topIcon fa-brands fa-tiktok"></i>
       </div>
-      <div className="topCenter">
+      <div className={`topCenter ${isNavVisible ? 'show-nav' : ''}`}>
         <ul className="topList">
-          <li className="topListItem">
-            <Link className="link" to="/">HOME</Link>
-          </li>
-          <li className="topListItem">
-            <Link className="link" to="/about">ABOUT</Link>
-          </li>
-          <li className="topListItem">
-            <Link className="link" to="/contact">CONTACT</Link>
-          </li>
-          <li className="topListItem">
-            <Link className="link" to="/write">WRITE</Link>
-          </li>
-          <li className="topListItem">
+          <div className="topListItemOne">
+            <li className="topListItem">
+              <Link className="link" to="/">HOME</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/about">ABOUT</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/contact">CONTACT</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/write">WRITE</Link>
+            </li>
+          </div>
+          <li className="topListItem topListItemLog">
             {user && 'LOGOUT'}
           </li>
+          <div className="out">
+            <li className="topListItem">
+              <Link className="link" to="/" onClick={toggleNavVisibility}>HOME</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/about">ABOUT</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/contact">CONTACT</Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/write">WRITE</Link>
+            </li>
+          </div>
         </ul>
       </div>
       <div className="topRight">
@@ -55,6 +79,11 @@ export default function Topbar() {
           </ul>
         )}
         <i className="topSearchIcon fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div className="hamDisplay">
+        <div className="hamburger" onClick={toggleNavVisibility}>
+          <i className="hamburgerIcon fa fa-bars"></i>
+        </div>
       </div>
     </div>
   );
