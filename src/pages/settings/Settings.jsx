@@ -7,8 +7,7 @@ export default function Settings() {
     <div>   
         <div className="settings">
             <div className="settingsWrapper">
-               {/*  { <Sidebar /> } */}
-                <div className="settingsTitle">
+            <div className="settingsTitle">
                   <span className="settingsUpdateTitle">Update Your Account</span>
                   
                   <span className="settingsDeleteTitle">Delete Account</span>
@@ -38,6 +37,7 @@ export default function Settings() {
                   <button className='settingsSubmit'>Update</button>
                 </form>
             </div>
+              {/*  <Sidebar />  */}
         </div>
     </div>
   )
