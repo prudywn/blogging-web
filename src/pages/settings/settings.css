@@ -30,6 +30,7 @@
 .settingsForm{
     display: flex;
     flex-direction: column;
+    
 }
 
 .settingsProfile{
