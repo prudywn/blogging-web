@@ -1,8 +1,17 @@
+
 import "./Post.css"
+//import React, {useEffect} from "react"
+//import axios from 'axios'
 
 export default function Post() {
-  return (
-    <div className='post'>
+  // useEffect(() => {
+  //   axios.get({'url': 'https://rapidapi.com/sharemap-sharemap-default/api/travel-places'})
+  //   .then(res => console.log(res))
+  //   .catch(err => console.log(err))
+  // }, [])
+   return (
+   <div className='post'>
+      
        <img 
        className="postImg"
        src="https://images.pexels.com/photos/62389/pexels-photo-62389.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -24,5 +33,6 @@ export default function Post() {
         <hr/>
        </div>
     </div>
+   
   )
 }
