@@ -2,3 +2,13 @@
     display: flex;
     
 }
+.dark.home {
+    background-color: #121212;
+    color: white;
+  }
+  /* .homeBgcolor{
+    background-color: white;
+  }
+  .dark .homeBgcolor{
+    background-color: #121212;
+  } */
