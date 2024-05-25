@@ -19,7 +19,7 @@ export default function Post() {
         const response = await axios.get('https://pixabay.com/api/', {
           params: {
             key: '44064749-a1cdae01a16067c7f42c496ed',
-            q: 'travel+scenery',
+            q: 'travel+landscape',
             image_type: 'photo',
           },
 
@@ -35,9 +35,15 @@ export default function Post() {
   return (
     <div className={`post ${modeClass}`}>
       <div className="image-gallery" >
+        
         {images.map((image, index) => (
+        <div key={image.id}>
           <img className="images" key={index} src={image.webformatURL} alt={image.tags} />
-          ))}
+          <span className="tag">{image.tags}</span>
+          <p className="tag">{image.likes}</p>
+          </div>
+        ))}
+            
       </div>
     </div>
   );
