@@ -7,11 +7,11 @@ export default function Post() {
   const { isDarkMode } = useDarkMode();
   const modeClass = isDarkMode ? 'dark' : '';
 
-  // useEffect(() => {
-  //   axios.get({'url': 'https://rapidapi.com/sharemap-sharemap-default/api/travel-places'})
-  //   .then(res => console.log(res))
-  //   .catch(err => console.log(err))
-  // }, [])
+  useEffect(() => {
+     axios.get({'url': 'https://rapidapi.com/sharemap-sharemap-default/api/travel-places'})
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+   }, [])
   const [images, setImages] = useState([])
   useEffect(() => {
     const fetchImages = async () => {
