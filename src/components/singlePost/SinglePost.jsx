@@ -1,32 +1,39 @@
+import axios from "axios"
 import "./SinglePost.css"
+import { useParams } from "react-router-dom"
+import React, { useState, useEffect } from "react"
 
-export default function SinglePost() {
-  return (
-    <div className="SinglePost">
-       <div className="singlePostWrapper">
-        <img
-        src="https://images.pexels.com/photos/62389/pexels-photo-62389.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        alt=""
-        className="singlePostImg"
-        />
-        <h1 className="singlePostTitle">Lorem ipsum, dolor sit amet
-        <div className="singlePostEdit">
-        <i className="singlePostIcon fa-solid fa-pen-to-square"></i>
-        <i className="singlePostIcon fa-solid fa-trash-can"></i>
+export default function SinglePost({id, images}) {
+  // const { id } = useParams()
+  // const [post, setPost] = useState([])
+  
+  const [imageArray, setImageArray] = useState([])
+  
+  useEffect(() => {
+    const fetchPost = async () => {
+      try{
+        const res = await axios.get(`https://pixabay.com/api/?key: '44064749-a1cdae01a16067c7f42c496ed'&id=${id}`)
+      
+      setImageArray(res.data.hits) 
+    }catch (err) {
+      console.log(err)
+    }
+  }
+  fetchPost()
+    }, [id])
+
+    return (
+      <div className="singlePost">
+        <h2>The Linked Paged</h2>
+        <div className="singlePostWrapper">
+          {imageArray.map((image) => (
+            image && image.largeImageURL && image.tags ? 
+           <img src={image.largeImageURL} alt={image.tags} key={image.id}/>
+           : null
+           ))}
         </div>
-        </h1>
-        <div className="singlePostInfo">
-            <span className="singlePostAuthor">Author : <b>Musa</b></span>
-            <span className="singlePostDate">1 hourAgo</span>
-        </div>
-        <p className="singlePostDesc">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde iste perspiciatis consectetur blanditiis eveniet, quisquam, ipsam nemo quidem aliquam vitae, facilis rerum sed. Accusantium eius itaque officiis nihil error quia.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde iste perspiciatis consectetur blanditiis eveniet, quisquam, ipsam nemo quidem aliquam vitae, facilis rerum sed. Accusantium eius itaque officiis nihil error quia.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde iste perspiciatis consectetur blanditiis eveniet, quisquam, ipsam nemo quidem aliquam vitae, facilis rerum sed. Accusantium eius itaque officiis nihil error quia.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde iste perspiciatis consectetur blanditiis eveniet, quisquam, ipsam nemo quidem aliquam vitae, facilis rerum sed. Accusantium eius itaque officiis nihil error quia.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde iste perspiciatis consectetur blanditiis eveniet, quisquam, ipsam nemo quidem aliquam vitae, facilis rerum sed. Accusantium eius itaque officiis nihil error quia.
-        </p>
-       </div>
-    </div>
-  )
+        
+      </div>
+    )
+    
 }
