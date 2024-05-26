@@ -52,7 +52,7 @@ const getInputData = (event) => {
         </span>
         <div className={`post ${modeClass}`}>
           
-       <Link className="link" to={`/read/${images.id}`}>
+       
             <div className="image-gallery">
             {images.map((image =>
                 <div key={image.id} className="images">
@@ -64,7 +64,7 @@ const getInputData = (event) => {
                   </div>
                ))}
            </div> 
-        </Link> 
+        
          </div>
        
     </div>
