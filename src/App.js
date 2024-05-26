@@ -7,7 +7,7 @@ import Write from './pages/write/Write'
 import Settings from './pages/settings/Settings'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
-import About from './pages/about/About'
+import About from './pages/about/Explore'
 //import { PostProvider } from './pages/write/PostContext'
 
 
@@ -44,9 +44,9 @@ export default function App() {
 
           <Route path='/register' element={ user ? <Home /> : <Register />} />
           
-          <Route path='/about' element={<About />} />
+          <Route path='/about' element={setUser ? <About /> : <Register/>} />
 
-         <Route path='/post/:postId' element={< Single/>}/>
+         <Route path='/read/:id' element={< Single/>}/>
 
         </Route>
        </Routes>
