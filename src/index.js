@@ -5,7 +5,12 @@ import App from './App'
 import { DarkModeProvider } from './components/DarkModeContext';
   
 
-ReactDOM.createRoot(document.getElementById('root'), render( <DarkModeProvider>
-    <App />
-  </DarkModeProvider>,))
-
+ReactDOM.createRoot(document.getElementById('root'), render(
+  <>
+  <React.StrictMode>
+    <DarkModeProvider>
+        <App />
+      </DarkModeProvider>,
+  </React.StrictMode>
+  </>
+  ))

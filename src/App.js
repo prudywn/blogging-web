@@ -31,12 +31,7 @@ export default function App() {
    <Router>
         <Topbar />
        <Routes>
-        
-        <Route >
-          
-          <Route page='/'  index element={<Home /> } />
-          
-
+         <Route page='/'  index element={<Home /> } />
           <Route path='/write' element={setUser ? <Write /> : <Register /> } />
           <Route path='/settings' element={setUser? <Settings /> : <Register />} />
 
@@ -48,7 +43,7 @@ export default function App() {
 
          <Route path='/read/:id' element={< Single/>}/>
 
-        </Route>
+        
        </Routes>
    
    </Router>
