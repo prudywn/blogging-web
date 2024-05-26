@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import Home  from './pages/home/Home'
 import Topbar from './components/topbar/Topbar'
 import Single from './pages/single/Single'
@@ -28,7 +28,7 @@ export default function App() {
 
   return (
     
-   <BrowserRouter>
+   <HashRouter>
         <Topbar />
        <Routes>
         
@@ -51,7 +51,7 @@ export default function App() {
         </Route>
        </Routes>
    
-   </BrowserRouter>
+   </HashRouter>
 
    
   )
