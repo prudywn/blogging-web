@@ -30,7 +30,10 @@ h2{
     align-items: center;
 }
 
-
+.writeIcon{
+    position: absolute;
+    left: 5%;
+}
 .writeSubmit{
     background-color: rgb(87, 64, 73);
     color: white;
@@ -39,8 +42,9 @@ h2{
     position: absolute;
     border-radius: 40px;
     top: 20px;
-    right: 50px;
+    right: 10px;
     cursor: pointer;
+   
 }
 
 .writeImg{
@@ -54,4 +58,18 @@ h2{
 button:hover{
     background-color: #0056b2;
 }
+.writeInput{
+    align-self: center;
+    border: 0.5px solid black;
+    border-radius: 4px;
+    padding: 15px;
+    width: 300px;
+    margin: 10px;
+  margin-right: 90px;
+}
+.writeText{
+    height: 100vh;
+    width: 100%;
+    border: none;
 
+}
