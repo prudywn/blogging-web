@@ -42,18 +42,3 @@
     object-fit: cover;
 }
 
-.search-container{
-    display: flex;
-    justify-content: center;
-   
-    padding: 10px;
-}
-
-.search-input{
-    padding: 15px;
-    width: 400px;
-    background-color: antiquewhite;
-    border: none;
-    border-radius: 10px;
-}
-

@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default function About() {
+function About() {
   return (
-    <div>About</div>
+    <div>
+        <h1>Group 2</h1>
+    </div>
   )
 }
+
+export default About

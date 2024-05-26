@@ -32,3 +32,19 @@
     margin-left: 10px;
     transition: 0.2s;
 }
+
+.search-container{
+    display: flex;
+    justify-content: center;
+   
+    padding: 10px;
+}
+
+.search-input{
+    padding: 15px;
+    width: 400px;
+    background-color: antiquewhite;
+    border: none;
+    border-radius: 10px;
+}
+
