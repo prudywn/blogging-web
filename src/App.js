@@ -7,6 +7,8 @@ import Write from './pages/write/Write'
 import Settings from './pages/settings/Settings'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
+import About from './pages/about/About'
+//import { PostProvider } from './pages/write/PostContext'
 
 
 export default function App() {
@@ -25,24 +27,24 @@ export default function App() {
 
 
   return (
+    
    <BrowserRouter>
         <Topbar />
        <Routes>
+        
         <Route >
+          
           <Route page='/'  index element={<Home /> } />
+          
 
           <Route path='/write' element={setUser ? <Write /> : <Register /> } />
-
-
-          
           <Route path='/settings' element={setUser? <Settings /> : <Register />} />
 
-          
           <Route path='/login' element={user ? <Home /> : <Login />} />
 
-          
           <Route path='/register' element={ user ? <Home /> : <Register />} />
-
+          
+          <Route path='/about' element={<About />} />
 
          <Route path='/post/:postId' element={< Single/>}/>
 
@@ -50,5 +52,7 @@ export default function App() {
        </Routes>
    
    </BrowserRouter>
+
+   
   )
 }

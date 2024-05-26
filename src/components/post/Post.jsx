@@ -13,13 +13,14 @@ export default function Post() {
   //   .catch(err => console.log(err))
   // }, [])
   const [images, setImages] = useState([])
+  const [query, setQuery] = useState('travel+landscape')
   useEffect(() => {
     const fetchImages = async () => {
       try {
         const response = await axios.get('https://pixabay.com/api/', {
           params: {
             key: '44064749-a1cdae01a16067c7f42c496ed',
-            q: 'travel+landscape',
+            q: query,
             image_type: 'photo',
           },
 
@@ -30,11 +31,30 @@ export default function Post() {
     }
     }
     fetchImages()
-    }, [])
+    }, [query])
 
   return (
-    <div className={`post ${modeClass}`}>
-      <div className="image-gallery" >
+    
+    <div className='search-container'>
+        <input
+        type='text'
+        placeholder='Search...'
+        value={query.replace('+', '')}
+        onChange={e => setQuery(e.target.value.replace('', '+'))}
+        className='search-input'
+        />
+        <div className={`post ${modeClass}`}>
+         <div className="image-gallery">
+           {images.map((image =>
+               <div key={image.id} className="images">
+                <img src={image.webformatURL} alt={image.tags} />
+                <p>{image.tags}</p>
+               </div>
+               ))}
+          </div> 
+         </div>
+    
+      {/* <div className="image-gallery" >
         
         {images.map((image, index) => (
         <div key={image.id}>
@@ -44,7 +64,8 @@ export default function Post() {
           </div>
         ))}
             
-      </div>
+      </div> */}
     </div>
+    
   );
 }

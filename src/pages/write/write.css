@@ -1,52 +1,34 @@
 .write{
     padding-top: 50px;
 }
-
-.writeForm{
+ .writeForm{
     position: relative;
+    
+ }
 
+label{
+    font-size: 18px;
 }
+
+textarea{
+    
+    margin-left: 30px ;
+}
+
+h2{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+
 
 .writeFormGroup{
     margin-left: 150px;
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.writeIcon{
-    font-size: 30px;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    border:1px solid ;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgb(87, 64, 73);
-    cursor: pointer;
-}
-
-.writeIcon:active{
-    transform: scale(0.9);
-    box-shadow: 0 0.2px 0.3px 0.5px;
-    color: gray;
-}
-
-.writeInput{
-    font-size: 24px;
-    padding: 10px 20px;
-    width: 70vw;
-    border: none;
-}
-
-.writeInput:focus{
-    outline: none;
-}
-
-.writeText{
-    font-size: 20px;
-    height: 100vh;
-}
 
 .writeSubmit{
     background-color: rgb(87, 64, 73);
@@ -66,4 +48,8 @@
     height: 250px;
     border-radius: 10px;
     object-fit: cover;
+}
+
+button:hover{
+    background-color: #0056b3;
 }
