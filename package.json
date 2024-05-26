@@ -44,11 +44,13 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.24.6",
     "@babel/plugin-transform-class-properties": "^7.24.6",
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.24.6",
     "@babel/plugin-transform-numeric-separator": "^7.24.6",
     "@babel/plugin-transform-optional-chaining": "^7.24.6",
     "@babel/plugin-transform-private-methods": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
     "@rollup/plugin-terser": "^0.4.4",
     "gh-pages": "^6.1.1",
     "react-router-dom": "^6.23.1"
