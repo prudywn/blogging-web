@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Posts from "../../components/posts/Posts";
 import "./Home.css";
 import { useDarkMode } from "../../components/DarkModeContext";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const { isDarkMode } = useDarkMode();
@@ -15,6 +16,12 @@ export default function Home() {
         <Posts />
         <Sidebar />
       </div>
+      <Link to={'https://blogapp-xlkxfcmmjxmleojg5eaunt.streamlit.app/'}>
+      <div className="chatbot">
+      <p className="chatbottext">Wanna Chat</p>
+      <i className="chatbotIcon fa-brands fa-rocketchat"></i>
+      </div>
+      </Link>
       </div>
   );
 }
