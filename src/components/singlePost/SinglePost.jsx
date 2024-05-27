@@ -1,6 +1,6 @@
 import axios from "axios"
 import "./SinglePost.css"
-import { useParams } from "react-router-dom"
+// import { useParams } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 
 export default function SinglePost({id, images}) {

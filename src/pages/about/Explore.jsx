@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import axios from 'axios'
 import { useDarkMode } from "../../components/DarkModeContext";
 import './explore.css'
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function About() {
   const { isDarkMode } = useDarkMode();
