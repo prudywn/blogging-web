@@ -31,7 +31,7 @@ export default function App() {
    <Router>
         <Topbar />
        <Routes>
-         <Route page='/'  index element={<Home /> } />
+         <Route path='/'  index element={<Home /> } />
           <Route path='/write' element={setUser ? <Write /> : <Register /> } />
           <Route path='/settings' element={setUser? <Settings /> : <Register />} />
 
