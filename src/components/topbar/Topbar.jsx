@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function Topbar() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const modeClass = isDarkMode ? 'dark' : '';
-  const user = true;
+  const user = false;
   const [isNavVisible, setIsNavVisible] = useState(false);
 
   const toggleNavVisibility = () => {
