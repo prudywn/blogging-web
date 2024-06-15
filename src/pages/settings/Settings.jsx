@@ -1,7 +1,7 @@
-
-import './settings.css'
-//import Sidebar from '../../components/sidebar/Sidebar'
-import React, {useState} from 'react'
+// Settings.js
+import React, { useState } from 'react';
+import axios from 'axios';
+import "./settings.css"
 
 export default function Settings() {
   const [formData, setFormData] = useState({
@@ -9,64 +9,62 @@ export default function Settings() {
     email: '',
     password: '',
     profilePic: null,
-  })
+  });
+
   const handleChange = (e) => {
-    const {name, value, files} = e.target
+    const { name, value, files } = e.target;
     setFormData({
       ...formData,
-      [name]:files ? files[0]: value,
-    })
-  }
+      [name]: files ? files[0] : value,
+    });
+  };
 
-  const  handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(formData)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
+    const data = new FormData();
+    if (formData.username) data.append('username', formData.username);
+    if (formData.email) data.append('email', formData.email);
+    if (formData.password) data.append('password', formData.password);
+    if (formData.profilePic) data.append('profilePic', formData.profilePic);
+
+    try {
+      await axios.put('http://localhost:5000/user/update', data, config);
+      alert('Profile updated successfully');
+    } catch (err) {
+      console.error(err);
+      alert('Failed to update profile');
+    }
+  };
 
   return (
-    <div>   
-       <div>
-         <img src='https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp' alt="" style={{width:'70%', margin:'10px', padding:'10px'}}/>
-      </div>
-        <div className="settings">
-            <div className="settingsWrapper">
-            <div className="settingsTitle">
-                  <span className="settingsUpdateTitle">Update Your Account</span>
-                  
-                  <span className="settingsDeleteTitle">Delete Account</span>
-
-                </div>
-
-                <form className="settingsForm" onSubmit={handleSubmit}>
-                  <label>Profile Picture
-                  <input type="file" name="profilePic" accept='image/*' onChange={handleChange}/></label>
-                  {formData.profilePic && (
-                    <div  className="settingsProfile">
-                    <img src={URL.createObjectURL(formData.profilePic)} alt="profilePic" style={{width:'100px', height:'100px'}}/>
-                    <label htmlFor="fileInput">
-                      <i className=" settingsProfilePicIcon fas fa-user-circle"></i>
-                    </label>
-                    <input type="file" id='fileInput' style={{display:'none'}} />
-                    </div>
-                  )}
-
-                  <label htmlFor="userName">Username</label>
-                  <input value={formData.username} name='username' type="text" placeholder='Your name...' onChange={handleChange}/>
-                  
-                  <label htmlFor="email">Email</label>
-                  <input value={formData.email} name='email' type="email" placeholder='Your email...' onChange={handleChange} />
-                  
-                  <label htmlFor="passwd">Password</label>
-                  <input value={formData.password} name='password' type="password"  onChange={handleChange}/>
-
-                  
-
-                  <button className='settingsSubmit' >Update</button>
-                </form>
-            </div>
-              {/*  <Sidebar />  */}
+    <div className="settings">
+      <div className="settingsWrapper">
+        <div className="settingsTitle">
+          <span className="settingsUpdateTitle">Update Your Account</span>
         </div>
+        <form className="settingsForm" onSubmit={handleSubmit}>
+          <label htmlFor="username">Username</label>
+          <input value={formData.username} name="username" type="text" placeholder="Your username..." onChange={handleChange} />
+          <label htmlFor="email">Email</label>
+          <input value={formData.email} name="email" type="email" placeholder="Your email..." onChange={handleChange} />
+          <label htmlFor="password">Password</label>
+          <input value={formData.password} name="password" type="password" placeholder="Your password..." onChange={handleChange} />
+          <label htmlFor="profilePic">Profile Picture</label>
+          <input name="profilePic" type="file" accept="image/*" onChange={handleChange} />
+          {formData.profilePic && (
+            <img src={URL.createObjectURL(formData.profilePic)} alt="Profile" style={{ width: '100px', height: '100px' }} />
+          )}
+          <button className="settingsSubmit" type="submit">Update</button>
+        </form>
+      </div>
     </div>
-  )
+  );
 }
