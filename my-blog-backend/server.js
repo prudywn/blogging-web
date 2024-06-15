@@ -6,10 +6,13 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const errorMiddleware = require('./middleware/errorMiddleware');
 require('dotenv').config();
+const notificationsRoutes = require('./routes/notificationsRoutes')
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/notifications', notificationsRoutes)
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Post.css';
-import { useDarkMode } from '../DarkModeContext';
+import { useDarkMode } from '../contexts/DarkModeContext';
 
 export default function Post() {
   const { isDarkMode } = useDarkMode();

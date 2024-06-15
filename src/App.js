@@ -9,6 +9,12 @@ import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import About from './pages/about/Explore'
 //import { PostProvider } from './pages/write/PostContext'
+import {PostsProvider} from './components/contexts/PostContext';
+//import Sidebar from "./components/sidebar/Sidebar";
+import Posts from "./components/posts/Posts";
+import { NotificationProvider } from './components/contexts/Notification';
+import NotificationList from './components/notifications';
+
 
 
 export default function App() {
@@ -27,10 +33,14 @@ export default function App() {
 
 
   return (
-    
+    <NotificationProvider>
+      <NotificationList />
+    <PostsProvider>
    <Router>
         <Topbar />
+        
        <Routes>
+
          <Route path='/'  index element={<Home /> } />
           <Route path='/write' element={setUser ? <Write /> : <Register /> } />
           <Route path='/settings' element={setUser? <Settings /> : <Register />} />
@@ -42,12 +52,13 @@ export default function App() {
           <Route path='/about' element={setUser ? <About /> : <Register/>} />
 
          <Route path='/read/:id' element={< Single/>}/>
+         <Route path='/posts/:category' element={<Posts/>}/>
 
-        
-       </Routes>
+        </Routes>
    
    </Router>
-
+   </PostsProvider>
+   </NotificationProvider>
    
   )
 }
