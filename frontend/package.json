@@ -1,6 +1,6 @@
 {
   "name": "blogging-web",
-  "homepage": "https://prudywn.github.io/blogging-web/",
+  "homepage": "https://prudywn.github.io/blogging-web/frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
