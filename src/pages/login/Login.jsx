@@ -1,10 +1,9 @@
-// Login.js
 import React, { useState } from 'react';
-import { useNavigate , Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import './login.css'
+import './login.css';
 
-export default function Login() {
+export default function Login({ setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -16,6 +15,7 @@ export default function Login() {
       const { token, user } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
+      setUser(user);
       navigate('/');
     } catch (err) {
       console.error(err);
