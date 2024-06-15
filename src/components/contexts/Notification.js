@@ -1,5 +1,4 @@
-// NotificationContext.js
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 
 const NotificationContext = createContext();
@@ -20,12 +19,15 @@ export const NotificationProvider = ({ children }) => {
           const newNotifications = response.data.filter(
             notification => new Date(notification.createdAt) > new Date(lastNotified)
           );
+
           newNotifications.forEach(notification => {
             alertNotification(notification);
           });
-        }
 
-        if (response.data.length > 0) {
+          if (newNotifications.length > 0) {
+            setLastNotified(newNotifications[0].createdAt);
+          }
+        } else if (response.data.length > 0) {
           setLastNotified(response.data[0].createdAt);
         }
       } catch (error) {
@@ -46,8 +48,13 @@ export const NotificationProvider = ({ children }) => {
     }
   };
 
+  const value = useMemo(() => ({
+    notifications,
+    setNotifications
+  }), [notifications]);
+
   return (
-    <NotificationContext.Provider value={{ notifications, setNotifications }}>
+    <NotificationContext.Provider value={value}>
       {children}
     </NotificationContext.Provider>
   );
