@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './write.css';
 
 export default function Write() {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('')
   const [content, setContent] = useState('');
   const [image, setImage] = useState('');
+  const [error, setError] = useState('');
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -17,21 +19,29 @@ export default function Write() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const post = { title, content, image, id: Date.now() };
-    const existingPosts = JSON.parse(localStorage.getItem('posts')) || [];
-    existingPosts.push(post);
-    localStorage.setItem('posts', JSON.stringify(existingPosts));
-    setTitle('');
-    setContent('');
-    setImage('');
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post('http://localhost:5000/posts', { title, content, image }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setTitle('');
+      setContent('');
+      setImage('');
+    } catch (err) {
+      console.error(err);
+      setError('Error creating post. Please try again.');
+    }
   };
 
   return (
     <div className='write'>
       <img className='writeImg' src="https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp" alt="Nature" />
       <form className='writeForm' onSubmit={handleSubmit}>
+        {error && <span className="error">{error}</span>}
         <div className='writeFormGroup'>
           <label htmlFor='fileInput'>
             <i className='writeIcon fas fa-plus'></i>
