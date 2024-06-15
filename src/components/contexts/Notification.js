@@ -1,3 +1,4 @@
+// NotificationContext.js
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -11,7 +12,7 @@ export const NotificationProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      const response = await axios.get('/api/notifications'); // Endpoint to fetch notifications
+      const response = await axios.get('/api/notifications');
       setNotifications(response.data);
       
       if (lastNotified) {
@@ -29,7 +30,10 @@ export const NotificationProvider = ({ children }) => {
     };
 
     fetchNotifications();
-  }, []);
+    const interval = setInterval(fetchNotifications, 5000); // Poll every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [lastNotified]);
 
   const alertNotification = (notification) => {
     if (notification.type === 'like') {

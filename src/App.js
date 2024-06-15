@@ -12,7 +12,7 @@ import Posts from './components/posts/Posts';
 import SinglePost from './components/singlePost/SinglePost';
 import { PostsProvider } from './components/contexts/PostContext';
 import { NotificationProvider } from './components/contexts/Notification';
-import NotificationList from './components/notifications';
+import NotificationPage from './pages/NotificationsPage';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <NotificationProvider>
-      <NotificationList />
+      
       <PostsProvider>
         <Router>
           <Topbar />
@@ -40,6 +40,7 @@ export default function App() {
             <Route path="/read/:id" element={<Single />} />
             <Route path="/posts/:category" element={<Posts />} />
             <Route path="/post/:id" element={<SinglePost />} />
+            <Route path="/notifications" element={<NotificationPage />} />
           </Routes>
         </Router>
       </PostsProvider>
