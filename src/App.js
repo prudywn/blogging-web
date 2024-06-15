@@ -12,7 +12,7 @@ import Posts from './components/posts/Posts';
 import SinglePost from './components/singlePost/SinglePost';
 import { PostsProvider } from './components/contexts/PostContext';
 import { NotificationProvider } from './components/contexts/Notification';
-import NotificationList from './components/notifications/NotificationList';
+import NotificationList from './components/notifications';
 
 export default function App() {
   const [user, setUser] = useState(null);
