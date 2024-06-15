@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import "./Topbar.css";
 import { useDarkMode } from "../DarkModeContext";
 import { useState } from "react";
+import { useUser } from "../../UserContext";
 
 export default function Topbar() {
+  
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const modeClass = isDarkMode ? 'dark' : '';
   const user = false;
@@ -12,6 +14,8 @@ export default function Topbar() {
   const toggleNavVisibility = () => {
     setIsNavVisible(!isNavVisible);
   };
+
+  const { userData } = useUser()
 
   return (
     <div className={`top ${modeClass}`}>
@@ -78,7 +82,9 @@ export default function Topbar() {
             </li>
           </ul>
         )}
-        <i className="topSearchIcon fa-solid fa-magnifying-glass"></i>
+        <img src={userData.profilePic} alt="Profile" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+      <span>{userData.username}</span>
+      <span>{userData.email}</span>
       </div>
       <div className="hamDisplay">
         <div className="hamburger" onClick={toggleNavVisibility}>
