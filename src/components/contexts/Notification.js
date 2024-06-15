@@ -11,25 +11,29 @@ export const NotificationProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      const response = await axios.get('/api/notifications'); // Endpoint to fetch notifications
-      setNotifications(response.data);
-      
-      if (lastNotified) {
-        const newNotifications = response.data.filter(
-          notification => new Date(notification.createdAt) > new Date(lastNotified)
-        );
-        newNotifications.forEach(notification => {
-          alertNotification(notification);
-        });
-      }
-      
-      if (response.data.length > 0) {
-        setLastNotified(response.data[0].createdAt);
+      try {
+        const response = await axios.get('/api/notifications'); // Endpoint to fetch notifications
+        setNotifications(response.data);
+
+        if (lastNotified) {
+          const newNotifications = response.data.filter(
+            notification => new Date(notification.createdAt) > new Date(lastNotified)
+          );
+          newNotifications.forEach(notification => {
+            alertNotification(notification);
+          });
+        }
+
+        if (response.data.length > 0) {
+          setLastNotified(response.data[0].createdAt);
+        }
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
       }
     };
 
     fetchNotifications();
-  }, []);
+  }, [lastNotified]);
 
   const alertNotification = (notification) => {
     if (notification.type === 'like') {

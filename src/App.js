@@ -10,6 +10,7 @@ import Register from './pages/register/Register';
 import About from './pages/about/Explore';
 import Posts from './components/posts/Posts';
 import SinglePost from './components/singlePost/SinglePost';
+import Logout from './pages/Logout';  // Import the new Logout component
 import { PostsProvider } from './components/contexts/PostContext';
 import { NotificationProvider } from './components/contexts/Notification';
 import NotificationList from './components/notifications';
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="/login" element={user ? <Navigate to="/" /> : <Login setUser={setUser} />} />
             <Route path="/register" element={user ? <Navigate to="/" /> : <Register setUser={setUser} />} />
             <Route path="/about" element={user ? <About /> : <Navigate to="/register" />} />
+            <Route path="/logout" element={user ? <Logout setUser={setUser} /> : <Navigate to="/login" />} />
             <Route path="/read/:id" element={<Single />} />
             <Route path="/posts/:category" element={<Posts />} />
             <Route path="/post/:id" element={<SinglePost />} />
