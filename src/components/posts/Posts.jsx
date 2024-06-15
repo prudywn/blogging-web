@@ -1,6 +1,6 @@
 import Post from "../post/Post";
 import "./Posts.css";
-import { useDarkMode } from "../DarkModeContext";
+import { useDarkMode } from "../contexts/DarkModeContext";
 
 export default function Posts() {
   const { isDarkMode } = useDarkMode();

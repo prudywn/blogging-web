@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Post.css';
-import { useDarkMode } from '../DarkModeContext';
+
+import { useDarkMode } from '../contexts/DarkModeContext';
+
+
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+
 
 
 export default function Post() {

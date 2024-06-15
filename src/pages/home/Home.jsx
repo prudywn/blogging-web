@@ -2,7 +2,7 @@ import Header from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Posts from "../../components/posts/Posts"
 import "./Home.css";
-import { useDarkMode } from "../../components/DarkModeContext";
+import { useDarkMode } from "../../components/contexts/DarkModeContext";
 import { Link } from "react-router-dom";
 
 export default function Home() {

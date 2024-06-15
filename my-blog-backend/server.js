@@ -7,6 +7,7 @@ const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const errorMiddleware = require('./middleware/errorMiddleware');
 require('dotenv').config();
+const notificationsRoutes = require('./routes/notificationsRoutes')
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' })); // Increase the limit for JSON payloads
 app.use(bodyParser.urlencoded({ limit: '60mb', extended: true })); // Increase the limit for URL encoded payloads
 app.use(bodyParser.json({ limit: '50mb' })); // Increase the limit for JSON payloads
+
+app.use('/api/notifications', notificationsRoutes)
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {

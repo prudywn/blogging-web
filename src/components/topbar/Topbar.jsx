@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import "./Topbar.css";
-import { useDarkMode } from "../DarkModeContext";
+import { useDarkMode } from "../contexts/DarkModeContext";
 import { useState } from "react";
-import { useUser } from "../../UserContext";
+import { useUser } from "../contexts/UserContext";
 
 export default function Topbar() {
   
@@ -25,10 +25,12 @@ export default function Topbar() {
       </div>
       <div className="topLeft">
         <Link className="link" to="/settings"><i className="topIcon fa fa-cog"></i></Link>
-        <i className="topIcon fab fa-facebook-square"></i>
-        <i className="topIcon fa-brands fa-square-twitter"></i>
-        <i className="topIcon fa-brands fa-square-instagram"></i>
-        <i className="topIcon fa-brands fa-tiktok"></i>
+        <a href="https://twitter.com/i/flow/signup?lang=en" target='_blank'><i className="topIcon fa-brands fa-square-twitter"></i></a>
+        <a href="https://web.facebook.com/?_rdc=1&_rdr" target='_blank'> <i className="topIcon fab fa-facebook-square"></i>
+        </a>
+        <a href="https://www.instagram.com/" target='_blank'><i className="topIcon fa-brands fa-square-instagram"></i></a>
+        <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer"><i className="topIcon fa-brands fa-tiktok"></i></a>
+        
       </div>
       <div className={`topCenter ${isNavVisible ? 'show-nav' : ''}`}>
         <ul className="topList">

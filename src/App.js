@@ -8,10 +8,13 @@ import Settings from './pages/settings/Settings';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import About from './pages/about/Explore';
-import Posts from './components/post/Post';
+import Posts from './components/posts/Posts';
 import SinglePost from './components/singlePost/SinglePost';
+import { PostsProvider } from './components/contexts/PostContext';
+import { NotificationProvider } from './components/contexts/Notification';
+import NotificationList from './components/notifications/NotificationList';
 
-function App() {
+export default function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -22,21 +25,24 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <Topbar />
-      <Routes>
-        <Route path="/" index element={<Home />} />
-        <Route path="/write" element={user ? <Write /> : <Navigate to="/register" />} />
-        <Route path="/settings" element={user ? <Settings /> : <Navigate to="/register" />} />
-        <Route path="/login" element={user ? <Navigate to="/" /> : <Login setUser={setUser} />} />
-        <Route path="/register" element={user ? <Navigate to="/" /> : <Register setUser={setUser} />} />
-        <Route path="/about" element={user ? <About /> : <Navigate to="/register" />} />
-        <Route path="/read/:id" element={<Single />} />
-        <Route path="/posts" element={<Posts />} />
-        <Route path="/post/:id" element={<SinglePost />} />
-      </Routes>
-    </Router>
+    <NotificationProvider>
+      <NotificationList />
+      <PostsProvider>
+        <Router>
+          <Topbar />
+          <Routes>
+            <Route path="/" index element={<Home />} />
+            <Route path="/write" element={user ? <Write /> : <Navigate to="/register" />} />
+            <Route path="/settings" element={user ? <Settings /> : <Navigate to="/register" />} />
+            <Route path="/login" element={user ? <Navigate to="/" /> : <Login setUser={setUser} />} />
+            <Route path="/register" element={user ? <Navigate to="/" /> : <Register setUser={setUser} />} />
+            <Route path="/about" element={user ? <About /> : <Navigate to="/register" />} />
+            <Route path="/read/:id" element={<Single />} />
+            <Route path="/posts/:category" element={<Posts />} />
+            <Route path="/post/:id" element={<SinglePost />} />
+          </Routes>
+        </Router>
+      </PostsProvider>
+    </NotificationProvider>
   );
 }
-
-export default App;

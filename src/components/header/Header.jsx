@@ -1,5 +1,5 @@
 import "./Header.css"
-import { useDarkMode } from "../DarkModeContext";
+import { useDarkMode } from "../contexts/DarkModeContext";
 //import React, {useState, useEffect} from 'react'
 
 

@@ -1,7 +1,7 @@
 // Settings.js
 import './settings.css';
 import React, { useState, useEffect } from 'react';
-import { useUser } from '../../UserContext';
+import { useUser } from '../../components/contexts/UserContext';
 import axios from 'axios';
 
 export default function Settings() {
