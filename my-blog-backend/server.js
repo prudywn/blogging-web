@@ -1,23 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bodyParser = require('body-parser'); // Import body-parser for configuring body size limits
+const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
+const notificationsRoutes = require('./routes/notificationsRoutes');
 const errorMiddleware = require('./middleware/errorMiddleware');
 require('dotenv').config();
-const notificationsRoutes = require('./routes/notificationsRoutes')
 
 const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json({ limit: '50mb' })); // Increase the limit for JSON payloads
-app.use(bodyParser.urlencoded({ limit: '60mb', extended: true })); // Increase the limit for URL encoded payloads
-app.use(bodyParser.json({ limit: '50mb' })); // Increase the limit for JSON payloads
+app.use(express.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '60mb', extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
 
-app.use('/api/notifications', notificationsRoutes)
+app.use('/api/notifications', notificationsRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {

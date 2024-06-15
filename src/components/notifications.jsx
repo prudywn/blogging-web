@@ -1,11 +1,11 @@
 import React from 'react';
-import { useNotifications } from './contexts/Notification';
+import { useNotifications } from '../components/contexts/Notification';
 
-const NotificationList = () => {
+const Notifications = () => {
   const { notifications } = useNotifications();
 
   return (
-    <div className="notification-list">
+    <div className="notifications-list">
       {notifications.map((notification) => (
         <div key={notification._id} className="notification-item">
           {notification.type === 'like' && <p>Someone liked your post</p>}
@@ -17,4 +17,4 @@ const NotificationList = () => {
   );
 };
 
-export default NotificationList;
+export default Notifications;
