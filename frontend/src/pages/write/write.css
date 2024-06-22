@@ -73,3 +73,11 @@ button:hover{
     border: none;
 
 }
+
+.writeGenerate{
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: #0056b2;
+}

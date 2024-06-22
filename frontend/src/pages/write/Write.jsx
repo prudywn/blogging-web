@@ -3,10 +3,11 @@ import axios from 'axios';
 import './write.css';
 
 export default function Write() {
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [image, setImage] = useState('');
   const [error, setError] = useState('');
+  const [generatedText, setGeneratedText] = useState('');
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -16,6 +17,16 @@ export default function Write() {
     };
     if (file) {
       reader.readAsDataURL(file);
+    }
+  };
+
+  const handleGenerateText = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/generate', { input: content });
+      setGeneratedText(response.data.response);
+    } catch (err) {
+      console.error(err);
+      setError('Error generating text. Please try again.');
     }
   };
 
@@ -31,6 +42,7 @@ export default function Write() {
       setTitle('');
       setContent('');
       setImage('');
+      setGeneratedText('');
     } catch (err) {
       console.error(err);
       setError('Error creating post. Please try again.');
@@ -65,6 +77,15 @@ export default function Write() {
             onChange={(e) => setContent(e.target.value)} 
           />
         </div>
+        <button type="button" className="writeGenerate" onClick={handleGenerateText}>
+          Generate Text
+        </button>
+        {generatedText && (
+          <div className="generatedText">
+            <h3>Generated Text:</h3>
+            <p>{generatedText}</p>
+          </div>
+        )}
         <button className="writeSubmit" type="submit">
           Publish
         </button>
